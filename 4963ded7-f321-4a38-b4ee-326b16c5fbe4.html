@@ -1,0 +1,1148 @@
+Вот готовый сайт портфолио для фрилансера на русском языке с названием ZAR. Все кнопки работают, код чистый и готов к загрузке на GitHub:
+
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAR | Портфолио фрилансера</title>
+    <base target="_self">
+    <style>
+        /* Основные стили */
+        :root {
+            --primary-50: #f0f9ff;
+            --primary-100: #e0f2fe;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gray-50);
+            color: var(--gray-800);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark {
+            background-color: var(--gray-900);
+            color: var(--gray-200);
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        nav.dark {
+            background-color: rgba(31, 41, 55, 0.8);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            height: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-600);
+            text-decoration: none;
+        }
+
+        .dark .logo {
+            color: var(--primary-400);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .dark .nav-link {
+            color: var(--gray-300);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-600);
+        }
+
+        .dark .nav-link:hover {
+            color: var(--primary-400);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-600);
+            cursor: pointer;
+        }
+
+        .dark .mobile-menu-btn {
+            color: var(--gray-300);
+        }
+
+        .mobile-menu {
+            display: none;
+            padding: 1rem;
+            background-color: white;
+        }
+
+        .dark .mobile-menu {
+            background-color: var(--gray-800);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.75rem 0;
+            color: var(--gray-600);
+            text-decoration: none;
+        }
+
+        .dark .mobile-nav-link {
+            color: var(--gray-300);
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--primary-600);
+        }
+
+        .dark .mobile-nav-link:hover {
+            color: var(--primary-400);
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-600);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-700);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-600);
+            border: 1px solid var(--primary-600);
+        }
+
+        .dark .btn-secondary {
+            background-color: var(--gray-800);
+            color: var(--primary-400);
+            border-color: var(--primary-400);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-50);
+            transform: translateY(-1px);
+        }
+
+        .dark .btn-secondary:hover {
+            background-color: var(--gray-700);
+        }
+
+        /* Секции */
+        section {
+            padding: 5rem 1rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title .divider {
+            width: 5rem;
+            height: 0.25rem;
+            background-color: var(--primary-600);
+            margin: 0 auto;
+        }
+
+        .dark .section-title .divider {
+            background-color: var(--primary-400);
+        }
+
+        /* Главная секция */
+        #home {
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-600);
+        }
+
+        .dark .hero-content h1 span {
+            color: var(--primary-400);
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .dark .hero-content p {
+            color: var(--gray-300);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            position: relative;
+            height: 24rem;
+            background: linear-gradient(135deg, var(--primary-100), var(--primary-50));
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .dark .hero-image {
+            background: linear-gradient(135deg, var(--gray-700), var(--gray-800));
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            padding: 1.5rem;
+            color: white;
+        }
+
+        /* Обо мне */
+        #about {
+            background-color: var(--gray-100);
+        }
+
+        .dark #about {
+            background-color: var(--gray-800);
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .about-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .dark .about-card {
+            background-color: var(--gray-700);
+        }
+
+        .about-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-card-icon {
+            font-size: 2.5rem;
+            color: var(--primary-600);
+            margin-bottom: 1.5rem;
+        }
+
+        .dark .about-card-icon {
+            color: var(--primary-400);
+        }
+
+        .about-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .about-card p {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .dark .about-card p {
+            color: var(--gray-300);
+        }
+
+        /* Навыки */
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .skills-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .skills-category {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .skills-category {
+            background-color: var(--gray-700);
+        }
+
+        .skills-category h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-600);
+        }
+
+        .dark .skills-category h3 {
+            color: var(--primary-400);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .dark .skill-badge {
+            background-color: var(--gray-600);
+            color: var(--gray-200);
+        }
+
+        .skill-badge:hover {
+            background-color: var(--primary-600);
+            color: white;
+        }
+
+        /* Проекты */
+        #projects {
+            background-color: var(--gray-100);
+        }
+
+        .dark #projects {
+            background-color: var(--gray-800);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .dark .project-card {
+            background-color: var(--gray-700);
+        }
+
+        .project-card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            height: 12rem;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .dark .project-content p {
+            color: var(--gray-300);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            background-color: var(--primary-100);
+            color: var(--primary-700);
+            border-radius: 0.25rem;
+        }
+
+        .dark .project-tag {
+            background-color: var(--gray-600);
+            color: var(--primary-200);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--primary-600);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .dark .project-link {
+            color: var(--primary-400);
+        }
+
+        .project-link:hover {
+            color: var(--primary-700);
+        }
+
+        .dark .project-link:hover {
+            color: var(--primary-300);
+        }
+
+        /* Контакты */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-600);
+        }
+
+        .dark .contact-icon {
+            color: var(--primary-400);
+        }
+
+        .contact-text h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-text p, .contact-text a {
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .dark .contact-text p, .dark .contact-text a {
+            color: var(--gray-300);
+        }
+
+        .contact-text a:hover {
+            color: var(--primary-600);
+        }
+
+        .dark .contact-text a:hover {
+            color: var(--primary-400);
+        }
+
+        .contact-form {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .contact-form {
+            background-color: var(--gray-700);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .dark .form-group label {
+            color: var(--gray-300);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            background-color: var(--gray-50);
+            color: var(--gray-800);
+        }
+
+        .dark .form-control {
+            border-color: var(--gray-600);
+            background-color: var(--gray-800);
+            color: var(--gray-200);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-600);
+        }
+
+        .dark .form-control:focus {
+            border-color: var(--primary-400);
+        }
+
+        textarea.form-control {
+            min-height: 8rem;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary-600);
+            color: white;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-700);
+        }
+
+        /* Подвал */
+        footer {
+            background-color: var(--gray-800);
+            color: var(--gray-200);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            font-size: 1.5rem;
+            color: var(--gray-200);
+            transition: color 0.2s;
+        }
+
+        .social-link:hover {
+            color: var(--primary-400);
+        }
+
+        .copyright {
+            font-size: 0.875rem;
+            color: var(--gray-400);
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        /* Утилиты */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">ZAR</a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Главная</a>
+                <a href="#about" class="nav-link">Обо мне</a>
+                <a href="#skills" class="nav-link">Навыки</a>
+                <a href="#projects" class="nav-link">Проекты</a>
+                <a href="#contact" class="nav-link">Контакты</a>
+                <button id="theme-toggle" class="mobile-menu-btn">
+                    <span class="dark:hidden">🌙</span>
+                    <span class="hidden dark:block">☀️</span>
+                </button>
+            </div>
+            <button id="mobile-menu-btn" class="mobile-menu-btn">☰</button>
+        </div>
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#home" class="mobile-nav-link">Главная</a>
+            <a href="#about" class="mobile-nav-link">Обо мне</a>
+            <a href="#skills" class="mobile-nav-link">Навыки</a>
+            <a href="#projects" class="mobile-nav-link">Проекты</a>
+            <a href="#contact" class="mobile-nav-link">Контакты</a>
+            <button id="theme-toggle-mobile" class="mobile-nav-link">
+                <span class="dark:hidden">🌙 Темная тема</span>
+                <span class="hidden dark:block">☀️ Светлая тема</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Главная секция -->
+    <section id="home">
+        <div class="section-container">
+            <div class="hero">
+                <div class="hero-content animate-fade-in">
+                    <h1>Привет, я <span>ZAR</span></h1>
+                    <h2>Фриланс разработчик</h2>
+                    <p>Создаю современные, адаптивные сайты и веб-приложения с чистым кодом и продуманным пользовательским опытом.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">Нанять меня</a>
+                        <a href="#projects" class="btn btn-secondary">Мои работы</a>
+                    </div>
+                </div>
+                <div class="hero-image animate-fade-in delay-100">
+                    <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Разработчик за работой">
+                    <div class="hero-image-overlay">
+                        <p>Открыт для новых проектов</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section id="about">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Обо мне</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="about-cards">
+                <div class="about-card animate-fade-in">
+                    <div class="about-card-icon">👔</div>
+                    <h3>Профессионализм</h3>
+                    <p>Более 5 лет опыта в веб-разработке. Работал со стартапами и крупными компаниями, создавая качественные решения.</p>
+                </div>
+                <div class="about-card animate-fade-in delay-100">
+                    <div class="about-card-icon">🚀</div>
+                    <h3>Подход</h3>
+                    <p>Использую современные технологии и методологии для создания эффективных и масштабируемых веб-приложений.</p>
+                </div>
+                <div class="about-card animate-fade-in delay-200">
+                    <div class="about-card-icon">🎯</div>
+                    <h3>Ценности</h3>
+                    <p>Чистый код, внимание к деталям, соблюдение сроков и открытая коммуникация - мои основные принципы работы.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Навыки -->
+    <section id="skills">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Навыки</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="skills-container">
+                <div class="skills-category animate-fade-in">
+                    <h3>Frontend</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">HTML5</span>
+                        <span class="skill-badge">CSS3</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">React</span>
+                        <span class="skill-badge">Vue.js</span>
+                        <span class="skill-badge">TypeScript</span>
+                        <span class="skill-badge">Tailwind CSS</span>
+                        <span class="skill-badge">SASS/SCSS</span>
+                    </div>
+                </div>
+                <div class="skills-category animate-fade-in delay-100">
+                    <h3>Backend</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">Node.js</span>
+                        <span class="skill-badge">Express</span>
+                        <span class="skill-badge">PHP</span>
+                        <span class="skill-badge">Laravel</span>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">Django</span>
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">MongoDB</span>
+                    </div>
+                </div>
+                <div class="skills-category animate-fade-in delay-200">
+                    <h3>Инструменты</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">Git</span>
+                        <span class="skill-badge">Webpack</span>
+                        <span class="skill-badge">Docker</span>
+                        <span class="skill-badge">Figma</span>
+                        <span class="skill-badge">Adobe XD</span>
+                        <span class="skill-badge">Jira</span>
+                        <span class="skill-badge">Trello</span>
+                    </div>
+                </div>
+                <div class="skills-category animate-fade-in delay-300">
+                    <h3>Другое</h3>
+                    <div class="skills-list">
+                        <span class="skill-badge">SEO</span>
+                        <span class="skill-badge">Адаптивный дизайн</span>
+                        <span class="skill-badge">UX/UI</span>
+                        <span class="skill-badge">GraphQL</span>
+                        <span class="skill-badge">REST API</span>
+                        <span class="skill-badge">PWA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Проекты -->
+    <section id="projects">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Мои проекты</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card animate-fade-in">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Корпоративный сайт">
+                    </div>
+                    <div class="project-content">
+                        <h3>Корпоративный сайт</h3>
+                        <p>Современный корпоративный сайт для IT-компании с системой управления контентом и интеграцией CRM.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML/CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">PHP</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">🌐 Демо</a>
+                            <a href="#" class="project-link">💻 Код</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate-fade-in delay-100">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Интернет-магазин">
+                    </div>
+                    <div class="project-content">
+                        <h3>Интернет-магазин</h3>
+                        <p>Полнофункциональный интернет-магазин с корзиной, платежной системой и личным кабинетом пользователя.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">🌐 Демо</a>
+                            <a href="#" class="project-link">💻 Код</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate-fade-in delay-200">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Мобильное приложение">
+                    </div>
+                    <div class="project-content">
+                        <h3>Мобильное приложение</h3>
+                        <p>Кроссплатформенное мобильное приложение для управления задачами с синхронизацией между устройствами.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">React Native</span>
+                            <span class="project-tag">Firebase</span>
+                            <span class="project-tag">Redux</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">📱 Демо</a>
+                            <a href="#" class="project-link">💻 Код</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Контакты</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info animate-fade-in">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <a href="mailto:contact@zar-dev.com">contact@zar-dev.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-text">
+                            <h3>Телефон</h3>
+                            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h3>Адрес</h3>
+                            <p>Москва, ул. Примерная, 123</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-text">
+                            <h3>Часы работы</h3>
+                            <p>Пн-Пт: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form animate-fade-in delay-100">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Тема</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-container">
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Telegram</a>
+                <a href="#" class="social-link">Twitter</a>
+            </div>
+            <p class="copyright">© 2023 ZAR Freelance Developer. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Обработка навигации
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Закрываем мобильное меню, если оно открыто
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Переключение темы
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+        
+        // Проверка сохраненной темы
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark');
+        }
+
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Обработка формы
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Здесь можно добавить отправку формы
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            console.log('Форма отправлена:', formData);
+            alert('Спасибо! Ваше сообщение отправлено. Я свяжусь с вами в ближайшее время.');
+            contactForm.reset();
+        });
+
+        // Анимация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animate-fade-in');
+            
+            animatedElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Плавное появление элементов при скролле
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
